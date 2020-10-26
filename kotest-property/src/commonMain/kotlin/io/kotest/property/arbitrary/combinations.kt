@@ -14,7 +14,7 @@ import kotlin.jvm.JvmName
  * @throws IllegalArgumentException If any negative weight is given or only
  * weights of zero are given.
  */
-fun <A : Any> Arb.Companion.choose(a: Pair<Int, A>, b: Pair<Int, A>, vararg cs: Pair<Int, A>): Arb<A> {
+fun <A : Any> Arb.Companion.choose(a: Pair<Int, out A>, b: Pair<Int, out A>, vararg cs: Pair<Int, out A>): Arb<out A> {
    val allPairs = listOf(a, b) + cs
    val weights = allPairs.map { it.first }
    require(weights.all { it >= 0 }) { "Negative weights not allowed" }
